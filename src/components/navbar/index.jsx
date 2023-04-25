@@ -12,7 +12,7 @@ export default function Navbar() {
         <>
             <LoginModal open={login} handleClose={() => setLogin(false)} />
             <div className={styles.navbar}>
-                <h1 className={styles.title}>A aula proibida</h1>
+                <h1 onClick={() => window.location.href = '/'} className={styles.title}>A aula proibida</h1>
                 <button className={styles.button} onClick={() => setSidebar(true)}><Icons.MenuOutline width="30px" height="30px" color="#8C89B8" /></button>
             </div>
             {
