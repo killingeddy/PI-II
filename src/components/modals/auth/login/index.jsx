@@ -31,9 +31,9 @@ export default function LoginModal({ open, handleClose }) {
                     <Icons.CloseOutline width="30px" height="30px" color="#8C89B8" />
                 </button>
                 <h1 className={styles.title}>Login</h1>
-                <form className={styles.form}>
-                    <input className={styles.input} type="email" name="email" placeholder="Email" onChange={handleChange} />
-                    <input className={styles.input} type="password" name="password" placeholder="Senha" onChange={handleChange} />
+                <form autocomplete="off" className={styles.form}>
+                    <input autocomplete="false" className={styles.input} type="email" name="email" placeholder="Email" onChange={handleChange} />
+                    <input autocomplete="false" className={styles.input} type="password" name="password" placeholder="Senha" onChange={handleChange} />
                     <button className={styles.button} type="submit">Entrar</button>
                 </form>
                 <p className={styles.text}>Não tem uma conta? <span onClick={() => setRegisterModal(true)} className={styles.span}>Cadastre-se</span></p>
