@@ -22,7 +22,7 @@ export default function Navbar() {
                     <button className={styles.button} onClick={() => setSidebar(false)}><Icons.CloseOutline width="30px" height="30px" color="#000" /></button>
                     <div className={styles.itens}>
                         <button onClick={() => setLogin(true)} className={styles.item}><Icons.LogInOutline color='#8C89B8' width="25px" height="25px" /><p>Login</p></button>
-                        <a href="#home" className={styles.item}><Icons.HomeOutline color='#8C89B8' width="25px" height="25px" /><p>Home</p></a>
+                        <button onClick={() => window.location.href = '/'} className={styles.item}><Icons.HomeOutline color='#8C89B8' width="25px" height="25px" /><p>Home</p></button>
                         <a href="#about" className={styles.item}><Icons.InformationCircleOutline color='#8C89B8' width="25px" height="25px" /><p>Sobre</p></a>
                         <a href="#contact" className={styles.item}><Icons.CallOutline color='#8C89B8' width="25px" height="25px" /><p>Contato</p></a>
                     </div>
