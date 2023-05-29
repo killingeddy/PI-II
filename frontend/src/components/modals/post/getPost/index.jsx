@@ -1,5 +1,5 @@
 import styles from './styles.module.scss';
-import Modal from '@mui/material/Modal';
+import { Modal } from '@mui/material';
 import * as Icons from 'react-ionicons';
 import React from 'react';
 
