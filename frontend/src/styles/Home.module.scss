@@ -1,0 +1,230 @@
+@font-face {
+  font-family: 'Boba Cups';
+  src: url('../../public/fonts/Boba\ Cups.otf');
+}
+
+@font-face {
+  font-family: 'KeeponTruckin';
+  src: url('../../public/fonts/KeeponTruckin.ttf');
+}
+
+@font-face {
+  font-family: 'SerlingGalleria';
+  src: url('../../public/fonts/SerlingGalleria.otf');
+}
+
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('../../public/fonts/Coolvetica.otf');
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+
+  .component {
+    width: 100%;
+    height: 95vh;
+    position: absolute;
+    z-index: -1;
+    background: rgb(140, 137, 184);
+    background: linear-gradient(340deg, rgba(140, 137, 184, 1) 0%, rgba(239, 195, 230, 1) 100%);
+    border-radius: 0 0 100rem 100rem;
+  }
+
+  .firstContent {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .title {
+      font-family: 'Boba Cups';
+      font-size: 20px;
+      color: #fff;
+      text-align: center;
+
+      .name {
+        font-size: 70px;
+        font-family: 'KeeponTruckin';
+        color: #B8BEDD;
+        text-shadow: 3px 5px 0px #ffffff80;
+      }
+    }
+
+    .description {
+      font-family: 'Boba Cups';
+      font-size: 20px;
+      color: #fff;
+      text-align: center;
+      margin-top: 20px;
+      width: 40%;
+    }
+  }
+
+  .secondContent {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .block {
+      width: 45%;
+      box-shadow: 5px 5px 0px 2px #B8BEDD90;
+      background: #fff;
+      border-radius: 35px;
+      height: 40vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      .title {
+        font-family: 'KeeponTruckin';
+        font-size: 40px;
+        color: #B8BEDD;
+        text-align: center;
+        margin-top: 20px;
+        text-shadow: 2px 2px 0px rgba(239, 195, 230, 1);
+        height: 20%;
+      }
+
+      .description {
+        font-family: 'Boba Cups';
+        font-size: 20px;
+        color: #B8BEDD;
+        text-align: center;
+        margin-top: 20px;
+        width: 80%;
+        height: 60%;
+      }
+    }
+  }
+
+  .thirdContent {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    background-color: #efc3e6;
+    margin-top: -10px;
+
+    .title {
+      font-family: 'KeeponTruckin';
+      font-size: 40px;
+      color: #B8BEDD;
+      text-align: center;
+      margin-top: 20px;
+      text-shadow: 2px 2px 0px #fff;
+      height: 20%;
+    }
+
+    .content {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      iframe {
+        width: 45%;
+        height: 40vh;
+        border-radius: 35px;
+        box-shadow: 5px 5px 0px 2px #B8BEDD90;
+        margin-top: 30px;
+      }
+    }
+  }
+
+  .fourthContent {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: -80px;
+
+    .title {
+      font-family: 'KeeponTruckin';
+      font-size: 45px;
+      color: #efc3e6;
+      text-align: center;
+      margin-top: 20px;
+      text-shadow: 2px 2px 0px #B8BEDD;
+    }
+
+    .subtitle {
+      font-family: 'SerlingGalleria';
+      font-size: 15px;
+      color: #B8BEDD;
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .content {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      .post {
+        width: 30%;
+        min-height: 25vh;
+        border-radius: 35px;
+        box-shadow: 0px 0px 10px 3px #B8BEDD70;
+        padding: 15px;
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+
+        .postTitle {
+          font-family: 'SerlingGalleria';
+          font-size: 15px;
+          color: #000;
+        }
+
+        .postDescription {
+          font-family: 'Coolvetica';
+          font-size: 18px;
+          color: #000;
+        }
+
+        .postAuthor {
+          font-family: 'SerlingGalleria';
+          font-size: 13px;
+          color: #8C89B8;
+          margin-top: 10px;
+        }
+      }
+    }
+
+    .button{
+      background-color: transparent;
+      border: none;
+      font-family: 'Boba Cups';
+      color: #8C89B8;
+      font-size: 20px;
+      margin-top: 20px;
+      text-shadow: 2px 2px 0px #B8BEDD;
+      display: flex;
+      cursor: pointer;
+
+      p{
+        margin: 0 10px;
+      }
+    }
+  }
+}
