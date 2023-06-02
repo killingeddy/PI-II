@@ -1,20 +1,20 @@
 const joi = require('joi');
 
 const registerSchema = joi.object({
-    username: joi.string().min(3).max(30).required(),
-    name: joi.string().min(3).max(30).required(),
-    password: joi.string().min(6).max(30).required()
+    email: joi.string().min(8).max(200).required().email(),
+    name: joi.string().min(8).max(150).required().pattern(new RegExp('^[a-zA-Z ]+$')),
+    password: joi.string().min(6).max(50).required()
 });
 
 const loginSchema = joi.object({
-    username: joi.string().min(3).max(30).required(),
-    password: joi.string().min(6).max(30).required()
+    email: joi.string().min(8).max(200).required().email(),
+    password: joi.string().min(6).max(50).required()
 });
 
 const editSchema = joi.object({
-    username: joi.string().min(3).max(30).required(),
-    name: joi.string().min(3).max(30).required(),
-    password: joi.string().min(6).max(30).required()
+    email: joi.string().min(8).max(200).required().email(),
+    name: joi.string().min(8).max(150).required().pattern(new RegExp('^[a-zA-Z ]+$')),
+    password: joi.string().min(6).max(50).required()
 });
 
 module.exports = {

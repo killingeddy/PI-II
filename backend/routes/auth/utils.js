@@ -6,6 +6,14 @@ const register = (email, name, password) => {
     `;
 };
 
+const checkEmail = (email) => {
+    return `
+        SELECT *
+        FROM users
+        WHERE email = '${email}'
+    `;
+};
+
 const login = (email) => {
     return `
         SELECT *
@@ -33,6 +41,7 @@ const getUser = (id) => {
 
 module.exports = {
     register,
+    checkEmail,
     login,
     edit,
     getUser
