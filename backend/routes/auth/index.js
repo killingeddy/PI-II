@@ -60,10 +60,10 @@ router.post("/login", async (req, res) => {
                     const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET);
                     res.json({ token, user });
                 } else {
-                    res.json({ error: "Password is incorrect" });
+                    res.status(400).json({ error: "Password is incorrect" });
                 }
             } else {
-                res.json({ error: "Email does not exist" });
+                res.status(400).json({ error: "Email does not exist" });
             }
         }).catch((err) => { res.status(400).json(err), console.log(err); });
 
