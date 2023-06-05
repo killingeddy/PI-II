@@ -25,7 +25,7 @@ router.get("/:id", async (req, res) => {
     const client = await pool.connect();
 
     try {
-        client.query(utils.getPostById(req.params.id)).then((result) => { res.json(result.rows), console.log(result) }).catch((err) => { res.status(400).json(err) });
+        client.query(utils.getPostById(req.params.id)).then((result) => { res.json(result.rows) }).catch((err) => { res.status(400).json(err) });
 
         client.release();
     } catch (err) {
@@ -42,7 +42,6 @@ router.post("/", async (req, res) => {
     try {
 
         const post = req.body;
-        console.log(post);
 
         const { error } = validate.addPostSchema.validate(post);
 
@@ -110,7 +109,7 @@ router.post("/:id/comments", async (req, res) => {
 
         if (error) return res.status(400).json(error.details[0].message);
 
-        client.query(utils.createComment(comment, req.params.id)).then((result) => { res.json(result.rows) }).catch((err) => { res.status(400).json(err), console.log(err); });
+        client.query(utils.createComment(comment, req.params.id)).then((result) => { res.json(result.rows) }).catch((err) => { res.status(400).json(err); });
 
         client.release();
 
@@ -122,7 +121,7 @@ router.post("/:id/comments", async (req, res) => {
 });
 
 // LIKES ROUTES
-router.post("/:id/likes", async (req, res) => {
+router.post("/like/:id", async (req, res) => {
 
     const client = await pool.connect();
 
@@ -130,7 +129,10 @@ router.post("/:id/likes", async (req, res) => {
 
         const like = req.body;
 
-        client.query(utils.createLike(like, req.params.id)).then((result) => { res.json(result.rows) }).catch((err) => { res.status(400).json(err) });
+        client.query(utils.createLike(like, req.params.id))
+        .then(utils.updateLike(req.params.id, '+1'))
+        .then((result) => { res.json(result.rows) })
+        .catch((err) => { res.status(400).json(err), console.log(err) });
 
         client.release();
 

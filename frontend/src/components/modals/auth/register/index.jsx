@@ -31,8 +31,8 @@ export default function RegisterModal({ open, handleClose }) {
                     <Icons.CloseOutline width="30px" height="30px" color="#8C89B8" />
                 </button>
                 <h1 className={styles.title}>Cadastrar</h1>
-                <form autocomplete="off" className={styles.form}>
-                    <input autocomplete="false"
+                <form autoComplete="off" className={styles.form}>
+                    <input autoComplete="false"
                         className={styles.input}
                         type="text"
                         name="name"
@@ -40,7 +40,7 @@ export default function RegisterModal({ open, handleClose }) {
                         value={data.name}
                         onChange={handleChange}
                     />
-                    <input autocomplete="false"
+                    <input autoComplete="false"
                         className={styles.input}
                         type="email"
                         name="email"
@@ -48,7 +48,7 @@ export default function RegisterModal({ open, handleClose }) {
                         value={data.email}
                         onChange={handleChange}
                     />
-                    <input autocomplete="false"
+                    <input autoComplete="false"
                         className={styles.input}
                         type="password"
                         name="password"

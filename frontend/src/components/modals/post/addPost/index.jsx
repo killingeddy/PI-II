@@ -30,8 +30,8 @@ export default function AddPostModal({ open, handleClose }) {
                     <Icons.CloseOutline width="30px" height="30px" color="#8C89B8" />
                 </button>
                 <h1 className={styles.title}>Adicionar post</h1>
-                <form autocomplete="off" className={styles.form}>
-                    <input autocomplete="false"
+                <form autoComplete="off" className={styles.form}>
+                    <input autoComplete="false"
                         className={styles.input}
                         type="text"
                         name="title"
