@@ -18,7 +18,7 @@ export default function LoginModal({ open, handleClose }) {
         setData({ ...data, [e.target.name]: e.target.value });
     }
 
-    const [registerModal, setRegisterModal] = React.useState(false);
+    const [registerModal, setRegisterModal] = React.useState(null);
 
     const login = async () => {
         api
@@ -26,7 +26,7 @@ export default function LoginModal({ open, handleClose }) {
                 ...data,
                 email: data.email.toLowerCase().trim(),
                 password: data.password
-            },{
+            }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -34,6 +34,18 @@ export default function LoginModal({ open, handleClose }) {
             .then((res) => {
                 localStorage.setItem('token', res.data.token);
                 localStorage.setItem('user', JSON.stringify(res.data.user));
+                setData({ email: '', password: '' });
+                handleClose();
+                toast.success('Login feito com sucesso', {
+                    position: "top-left",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             })
             .catch((err) => {
                 toast.error('Erro ao fazer login', {
@@ -48,6 +60,11 @@ export default function LoginModal({ open, handleClose }) {
                 });
             });
     };
+
+    React.useEffect(() => {
+        if (!open) handleClose();
+        if (localStorage.getItem('token')) handleClose();
+    }, [open, handleClose]);
 
     return (
         <Modal

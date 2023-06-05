@@ -1,6 +1,8 @@
 import styles from './styles.module.scss';
 import Modal from '@mui/material/Modal';
 import * as Icons from 'react-ionicons';
+import { toast } from 'react-toastify';
+import api from '@/tools/api';
 import React from 'react';
 
 export default function RegisterModal({ open, handleClose }) {
@@ -16,6 +18,51 @@ export default function RegisterModal({ open, handleClose }) {
             ...data,
             [e.target.name]: e.target.value,
         });
+    }
+
+    const createUser = async () => {
+        api
+            .post('/auth/register', {
+                ...data,
+                name: data.name.trim(),
+                email: data.email.trim().toLowerCase(),
+                password: data.password.trim(),
+            })
+            .then((res) => {
+                api
+                    .post('/auth/login', {
+                        email: data.email.trim().toLowerCase(),
+                        password: data.password.trim(),
+                    })
+                    .then((res) => {
+                        localStorage.setItem('token', res.data.token);
+                        localStorage.setItem('user', JSON.stringify(res.data.user));
+                        setData({ name: '', email: '', password: '' });
+                        handleClose();
+                        toast.success('Cadastro feito com sucesso', {
+                            position: "top-left",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "dark",
+                        });
+                    })
+            })
+            .catch((err) => {
+                toast.error('Erro ao fazer cadastro', {
+                    position: "top-left",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            });
     }
 
     return (
@@ -56,8 +103,8 @@ export default function RegisterModal({ open, handleClose }) {
                         value={data.password}
                         onChange={handleChange}
                     />
-                    <button className={styles.button} type="submit">Cadastrar</button>
                 </form>
+                <button className={styles.button} onClick={() => createUser()}>Cadastrar</button>
             </div>
         </Modal>
     );
