@@ -1,8 +1,38 @@
 import styles from '../styles/Home.module.scss';
 import Navbar from '@/components/navbar';
 import * as Icons from 'react-ionicons';
+import api from '@/tools/api';
+import React from 'react';
+import { toast } from 'react-toastify';
 
 export default function Home() {
+
+  const [data, setData] = React.useState([]);
+
+  const getData = async () => {
+    api
+      .get("/posts/highlights")
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        toast.error('Erro ao fazer cadastro', {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      });
+  };
+
+  React.useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -31,10 +61,10 @@ export default function Home() {
           <div className={styles.thirdContent}>
             <h1 className={styles.title}>Confira alguns materiais</h1>
             <div className={styles.content}>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/Rcnc_6UVlcM" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
               <iframe width="560" height="315" src="https://www.youtube.com/embed/XsJTCKzL-Gg" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
               <iframe width="560" height="315" src="https://www.youtube.com/embed/sYC1RAeKw7w" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
               <iframe width="560" height="315" src="https://www.youtube.com/embed/l_YzXUrL6Ls" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/Rcnc_6UVlcM" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
             </div>
           </div>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#efc3e6" fillOpacity="1" d="M0,64L48,58.7C96,53,192,43,288,48C384,53,480,75,576,96C672,117,768,139,864,149.3C960,160,1056,160,1152,154.7C1248,149,1344,139,1392,133.3L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
@@ -42,10 +72,16 @@ export default function Home() {
             <h1 className={styles.title}>Nosso blog</h1>
             <h3 className={styles.subtitle}>Não fique de fora, pense também o que você pensa e compartilhe materiais legais :)</h3>
             <div className={styles.content}>
-              <div className={styles.post}>
-                <p className={styles.postDescription}>A educação sexual é um processo de aprendizagem que visa a formação de uma consciência crítica sobre a sexualidade, ajudando a pessoa a tomar decisões responsáveis e saudáveis sobre o seu comportamento sexual.</p>
-                <h5 className={styles.postAuthor}>Por: <span className={styles.author}>Aula Proibida</span></h5>
-              </div>
+              {
+                data?.map((item, index) => {
+                  return (
+                    <div className={styles.post} key={index}>
+                      <p className={styles.postDescription}>{item.post_content}</p>
+                      <h5 className={styles.postAuthor}>Por: <span className={styles.author}>{item.name}</span></h5>
+                    </div>
+                  )
+                })
+              }
             </div>
             <button className={styles.button} onClick={() => window.location.href = '/blog'}><p>Ver mais</p><Icons.PaperPlane color="#8C89B8" width="25px" height="25px" /></button>
           </div>
