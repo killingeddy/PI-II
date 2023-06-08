@@ -8,6 +8,16 @@ const getAllPosts = () => {
     `;
 }
 
+const getHighlightedPosts = () => {
+    return `
+    select p.*, u.name, u.email
+    FROM public.post p
+    inner join public.users u on p.user_id = u.id
+    order by n_likes desc
+    limit 6;
+    `;
+}
+
 const getPostById = (id) => {
     return `
     select p.*, u.name, u.email
@@ -77,6 +87,7 @@ const deleteLike = (like) => {
 
 module.exports = {
     getAllPosts,
+    getHighlightedPosts,
     getPostById,
     createPost,
     updatePost,
