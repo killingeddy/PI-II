@@ -31,11 +31,11 @@ export default function Navbar() {
     return (
         <div className={styles.sidebar} onMouseEnter={() => setSidebar(false)} onMouseLeave={() => setSidebar(true)}>
             <LoginModal open={login} handleClose={() => setLogin(false)} />
-            <Sidebar collapsed={sidebar} style={{ backgroundColor: "#f5f5f5", height: "100vh" }} transitionDuration={800}>
+            <Sidebar collapsed={sidebar} style={{ backgroundColor: "#fff", height: "100vh" }} transitionDuration={800}>
                 <Menu>
-                <Link href="/">
-                    <img src="/logo.png" alt="logo" className={styles.logo} />
-                </Link>
+                    <Link href="/">
+                        <img src="/logo.png" alt="logo" className={styles.logo} />
+                    </Link>
                 </Menu>
                 <Menu
                     menuItemStyles={{
@@ -46,7 +46,7 @@ export default function Navbar() {
                                 ?
                                 'linear-gradient(340deg, rgba(140, 137, 184, 0.5019257703081232) 0%, rgba(239, 195, 230, 0.499124649859944) 100%);'
                                 :
-                                "#f5f5f5",
+                                "#fff",
                             border: "none",
                             borderTopLeftRadius: "40px",
                             borderBottomLeftRadius: "40px",
