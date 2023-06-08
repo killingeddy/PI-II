@@ -1,13 +1,13 @@
 const joi = require('joi');
 
 const addPostSchema = joi.object({
-    title: joi.string().min(3).max(50).required(),
+    title: joi.string().min(3).max(50).allow(null, ''),
     post_content: joi.string().min(3).max(255).required(),
     user_id: joi.number().integer().required()
 });
 
 const editPostSchema = joi.object({
-    title: joi.string().min(3).max(50).required(),
+    title: joi.string().min(3).max(50).allow(null, ''),
     post_content: joi.string().min(3).max(255).required()
 });
 
