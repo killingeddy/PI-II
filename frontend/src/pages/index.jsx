@@ -76,6 +76,7 @@ export default function Home() {
                 data?.map((item, index) => {
                   return (
                     <div className={styles.post} key={index}>
+                      <h1 className={styles.postTitle}>{item.title}</h1>
                       <p className={styles.postDescription}>{item.post_content}</p>
                       <h5 className={styles.postAuthor}>Por: <span className={styles.author}>{item.name}</span></h5>
                     </div>
