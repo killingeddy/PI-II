@@ -9,7 +9,7 @@ import Link from 'next/link';
 export default function Navbar() {
 
     const [sidebar, setSidebar] = React.useState(true);
-    const [login, setLogin] = React.useState(false);
+    const [login, setLogin] = React.useState(null);
 
     const [logged, setLogged] = React.useState(false);
 
@@ -23,7 +23,10 @@ export default function Navbar() {
 
     React.useEffect(() => {
         localVerify();
-    }, []);
+        if (login === false) {
+            setSidebar(true);
+        }
+    }, [logged, login]);
 
     return (
         <div className={styles.sidebar} onMouseEnter={() => setSidebar(false)} onMouseLeave={() => setSidebar(true)}>
