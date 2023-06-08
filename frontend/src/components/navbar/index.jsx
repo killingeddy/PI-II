@@ -30,7 +30,9 @@ export default function Navbar() {
             <LoginModal open={login} handleClose={() => setLogin(false)} />
             <Sidebar collapsed={sidebar} style={{ backgroundColor: "#f5f5f5", height: "100vh" }} transitionDuration={800}>
                 <Menu>
+                <Link href="/">
                     <img src="/logo.png" alt="logo" className={styles.logo} />
+                </Link>
                 </Menu>
                 <Menu
                     menuItemStyles={{
