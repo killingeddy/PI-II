@@ -12,6 +12,8 @@ export default function Blog() {
     const [getPostModal, setGetPostModal] = React.useState(false);
     const [addPostModal, setAddPostModal] = React.useState(false);
 
+    const [id, setId] = React.useState(null);
+
     const [data, setData] = React.useState([]);
 
     const getPosts = async () => {
@@ -40,7 +42,7 @@ export default function Blog() {
 
     return (
         <>
-            <GetPostModal open={getPostModal} handleClose={() => setGetPostModal(false)} />
+            <GetPostModal open={getPostModal} handleClose={() => setGetPostModal(false)} id={id} />
             <AddPostModal open={addPostModal} handleClose={() => setAddPostModal(false)} />
             <Navbar />
             <div className={styles.container}>
@@ -54,7 +56,7 @@ export default function Blog() {
                             {
                                 data.map((item, index) => {
                                     return (
-                                        <div className={styles.post} onClick={() => setGetPostModal(true)} key={index}>
+                                        <div className={styles.post} onClick={() => {setId(item.id); setGetPostModal(true)}} key={index}>
                                             <p className={styles.postTitle}>{item.title}</p>
                                             <p className={styles.postDescription}>{item.post_content}</p>
                                             <h5 className={styles.postAuthor}>Por: <span className={styles.author}>{item.name}</span></h5>
