@@ -2,12 +2,14 @@ import styles from './styles.module.scss';
 import Modal from '@mui/material/Modal';
 import * as Icons from 'react-ionicons';
 import React from 'react';
+import api from '@/tools/api';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function AddPostModal({ open, handleClose }) {
 
     const [data, setData] = React.useState({
         title: '',
-        description: '',
+        post_content: '',
     });
 
     const handleChange = (e) => {
@@ -15,6 +17,41 @@ export default function AddPostModal({ open, handleClose }) {
             ...data,
             [e.target.name]: e.target.value,
         });
+    }
+
+    const addPost = () => {
+        const user = localStorage.getItem('user');
+        const userId = JSON.parse(user).id;
+        api
+            .post('/posts', {
+                ...data,
+                user_id: userId,
+            })
+            .then((res) => {
+                toast.success('Post adicionado com sucesso!', {
+                    position: "top-left",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                handleClose();
+            })
+            .catch((err) => {
+                toast.error('Erro ao adicionar post', {
+                    position: "top-left",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            });
     }
 
     return (
@@ -41,13 +78,14 @@ export default function AddPostModal({ open, handleClose }) {
                     />
                     <textarea
                         className={styles.textarea}
-                        name="description"
+                        name="post_content"
                         placeholder="Descrição"
-                        value={data.description}
+                        value={data.post_content}
                         onChange={handleChange}
                     />
-                    <button className={styles.button} type="submit">Adicionar</button>
                 </form>
+                <button className={styles.button} onClick={() => addPost()}>Adicionar</button>
+                <ToastContainer />
             </div>
         </Modal>
     );
