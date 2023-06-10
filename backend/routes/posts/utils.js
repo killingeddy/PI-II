@@ -56,8 +56,8 @@ const getPostComments = (id) => {
 // COMMENTS UTILS
 const createComment = (comment, id) => {
     return `
-    INSERT INTO public.users_comments (user_id, post_id, comment_content, n_likes)
-    VALUES (${comment.user_id}, ${id}, '${comment.comment_content}', 0)
+    INSERT INTO public.users_comments (user_id, post_id, comment_content, n_likes, res_comment)
+    VALUES (${comment.user_id}, ${id}, '${comment.comment_content}', 0, null)
     RETURNING *;
     UPDATE public.post
     SET n_comments = n_comments + 1
