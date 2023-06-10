@@ -59,6 +59,9 @@ const createComment = (comment, id) => {
     INSERT INTO public.users_comments (user_id, post_id, comment_content, n_likes)
     VALUES (${comment.user_id}, ${id}, '${comment.comment_content}', 0)
     RETURNING *;
+    UPDATE public.post
+    SET n_comments = n_comments + 1
+    WHERE id = ${id};
     `;
 }
 
