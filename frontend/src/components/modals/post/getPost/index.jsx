@@ -1,14 +1,17 @@
+import { ToastContainer, toast } from 'react-toastify';
 import styles from './styles.module.scss';
 import Modal from '@mui/material/Modal';
 import * as Icons from 'react-ionicons';
-import React from 'react';
+import AddComment from '../addComment';
 import api from '@/tools/api';
-import { ToastContainer, toast } from 'react-toastify';
+import React from 'react';
 
 export default function GetPostModal({ open, handleClose, id }) {
 
-    const [data, setData] = React.useState({});
     const [comments, setComments] = React.useState([]);
+    const [data, setData] = React.useState({});
+
+    const [openAddComment, setOpenAddComment] = React.useState(false);
 
     const getPost = async () => {
         api
@@ -52,7 +55,8 @@ export default function GetPostModal({ open, handleClose, id }) {
 
     React.useEffect(() => {
         getPost();
-    }, [open]);
+        getComments();
+    }, [open, id, openAddComment]);
 
     return (
         <Modal
@@ -63,6 +67,7 @@ export default function GetPostModal({ open, handleClose, id }) {
             className={styles.modal}
         >
             <div className={styles.container}>
+                <AddComment open={openAddComment} handleClose={() => setOpenAddComment(false)} id={id} />
                 <button className={styles.close} onClick={handleClose}>
                     <Icons.CloseOutline width="30px" height="30px" color="#8C89B8" />
                 </button>
@@ -75,7 +80,7 @@ export default function GetPostModal({ open, handleClose, id }) {
                             liked ? <Icons.Heart width="20px" height="20px" color="#8C89B8" /> : <Icons.HeartOutline width="20px" height="20px" color="#8C89B8" />
                         } */}
                     </button>
-                    <button className={styles.button}><Icons.ChatbubbleOutline width="20px" height="20px" color="#8C89B8" /></button>
+                    <button onClick={() => setOpenAddComment(true)} className={styles.button}><Icons.ChatbubbleOutline width="20px" height="20px" color="#8C89B8" /></button>
                     <button className={styles.button}><Icons.BookmarkOutline width="20px" height="20px" color="#8C89B8" /></button>
                     <button className={styles.button}><Icons.ShareSocialOutline width="20px" height="20px" color="#8C89B8" /></button>
                 </div>
