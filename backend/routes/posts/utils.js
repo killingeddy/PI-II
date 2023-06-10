@@ -86,6 +86,14 @@ const deleteLike = (like, id) => {
     `;
 }
 
+const usersWhoLiked = (id) => {
+    return `
+    SELECT user_id
+    FROM public.user_likes
+    WHERE post_id = ${id};
+    `;
+};
+
 module.exports = {
     getAllPosts,
     getHighlightedPosts,
@@ -95,5 +103,6 @@ module.exports = {
     getPostComments,
     createComment,
     createLike,
-    deleteLike
+    deleteLike,
+    usersWhoLiked
 };
