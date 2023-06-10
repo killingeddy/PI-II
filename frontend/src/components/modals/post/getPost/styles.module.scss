@@ -18,139 +18,282 @@
     src: url('../../../../../public/fonts/Coolvetica.otf');
 }
 
-.modal {
-    background: rgb(140, 137, 184);
-    background: linear-gradient(340deg, rgba(140, 137, 184, 0.5019257703081232) 0%, rgba(239, 195, 230, 0.499124649859944) 100%);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .container {
-        outline: none;
-        width: 40%;
-        background: #fff;
-        border-radius: 25px;
+@media screen and (max-width: 768px){
+    .modal {
+        background: rgb(140, 137, 184);
+        background: linear-gradient(340deg, rgba(140, 137, 184, 0.5019257703081232) 0%, rgba(239, 195, 230, 0.499124649859944) 100%);
+        width: 100%;
+        height: 100%;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 20px;
-        position: relative;
-        max-height: 90%;
-
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 30px;
-            height: 30px;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            transition: 0.5s ease-in-out;
-
-            &:hover {
-                transform: rotate(180deg);
-            }
-        }
-
-        .title {
-            font-family: 'Boba Cups';
-            color: #8C89B8;
-            text-shadow: 3px 5px 0px #8C89B870;
-            font-size: 2rem;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .subtitle {
-            font-family: 'Coolvetica';
-            color: #000;
-            font-size: 15px;
-            margin: 0;
-        }
-
-        .description {
-            font-family: 'Coolvetica';
-            color: #000;
-            font-size: 20px;
-            margin: 20px 0;
-            text-align: justify;
-        }
-
-        .buttons {
-            width: 100%;
+    
+        .container {
+            outline: none;
+            width: 90%;
+            background: #fff;
+            border-radius: 25px;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-around;
-
-            .button {
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            max-height: 90%;
+    
+            .close {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 30px;
+                height: 30px;
                 background-color: transparent;
                 border: none;
                 cursor: pointer;
-                color: #8C89B8;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-family: 'Boba Cups';
+                transition: 0.5s ease-in-out;
+    
+                &:hover {
+                    transform: rotate(180deg);
+                }
             }
-
-            h3 {
-                font-size: 1rem;
+    
+            .title {
+                font-family: 'Boba Cups';
+                color: #8C89B8;
+                text-shadow: 3px 5px 0px #8C89B870;
+                font-size: 2rem;
+                margin: 20px 0;
+                text-align: center;
+            }
+    
+            .subtitle {
+                font-family: 'Coolvetica';
+                color: #000;
+                font-size: 15px;
                 margin: 0;
-                padding: 0;
-                color: #8C89B8;
-                font-family: 'Boba Cups';
             }
-        }
-
-        .comments {
-            width: 95%;
-            display: flex;
-            flex-direction: column;
-            border-left: 1px solid #8C89B880;
-            padding: 0 10px;
-            overflow-y: scroll;
-            max-height: 300px;
-
-            &::-webkit-scrollbar {
-                width: 0.4rem;
+    
+            .description {
+                font-family: 'Coolvetica';
+                color: #000;
+                font-size: 20px;
+                margin: 20px 0;
+                text-align: justify;
             }
-
-            &::-webkit-scrollbar-track {
-                background: rgb(140, 137, 184);
-                background: linear-gradient(340deg, rgba(140, 137, 184, 1) 0%, rgba(239, 195, 230, 1) 100%);
-                border-radius: 0.6rem;
-            }
-
-            &::-webkit-scrollbar-thumb {
-                background: rgb(140, 137, 184);
-                border-radius: 0.6rem;
-            }
-
-            .comment {
+    
+            .buttons {
                 width: 100%;
                 display: flex;
-                flex-direction: column;
-                margin: 0 0 10px;
-
-                .commentTitle {
-                    font-family: 'SerlingGalleria';
+                align-items: center;
+                justify-content: space-around;
+    
+                .button {
+                    background-color: transparent;
+                    border: none;
+                    cursor: pointer;
                     color: #8C89B8;
-                    font-size: 15px;
-                    margin: 0;
-                    opacity: 0.7;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-family: 'Boba Cups';
                 }
-
-                .commentDescription {
-                    font-family: 'Coolvetica';
-                    color: #000;
-                    font-size: 15px;
+    
+                h3 {
+                    font-size: 1rem;
                     margin: 0;
-                    text-align: justify;
-                    opacity: 0.7;
+                    padding: 0;
+                    color: #8C89B8;
+                    font-family: 'Boba Cups';
+                }
+            }
+    
+            .comments {
+                width: 95%;
+                display: flex;
+                flex-direction: column;
+                border-left: 1px solid #8C89B880;
+                padding: 0 10px;
+                overflow-y: scroll;
+                max-height: 300px;
+    
+                &::-webkit-scrollbar {
+                    width: 0.4rem;
+                }
+    
+                &::-webkit-scrollbar-track {
+                    background: rgb(140, 137, 184);
+                    background: linear-gradient(340deg, rgba(140, 137, 184, 1) 0%, rgba(239, 195, 230, 1) 100%);
+                    border-radius: 0.6rem;
+                }
+    
+                &::-webkit-scrollbar-thumb {
+                    background: rgb(140, 137, 184);
+                    border-radius: 0.6rem;
+                }
+    
+                .comment {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0 0 10px;
+    
+                    .commentTitle {
+                        font-family: 'SerlingGalleria';
+                        color: #8C89B8;
+                        font-size: 15px;
+                        margin: 0;
+                        opacity: 0.7;
+                    }
+    
+                    .commentDescription {
+                        font-family: 'Coolvetica';
+                        color: #000;
+                        font-size: 15px;
+                        margin: 0;
+                        text-align: justify;
+                        opacity: 0.7;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px){
+    .modal {
+        background: rgb(140, 137, 184);
+        background: linear-gradient(340deg, rgba(140, 137, 184, 0.5019257703081232) 0%, rgba(239, 195, 230, 0.499124649859944) 100%);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        .container {
+            outline: none;
+            width: 40%;
+            background: #fff;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            max-height: 90%;
+    
+            .close {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 30px;
+                height: 30px;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                transition: 0.5s ease-in-out;
+    
+                &:hover {
+                    transform: rotate(180deg);
+                }
+            }
+    
+            .title {
+                font-family: 'Boba Cups';
+                color: #8C89B8;
+                text-shadow: 3px 5px 0px #8C89B870;
+                font-size: 2rem;
+                margin: 20px 0;
+                text-align: center;
+            }
+    
+            .subtitle {
+                font-family: 'Coolvetica';
+                color: #000;
+                font-size: 15px;
+                margin: 0;
+            }
+    
+            .description {
+                font-family: 'Coolvetica';
+                color: #000;
+                font-size: 20px;
+                margin: 20px 0;
+                text-align: justify;
+            }
+    
+            .buttons {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+    
+                .button {
+                    background-color: transparent;
+                    border: none;
+                    cursor: pointer;
+                    color: #8C89B8;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-family: 'Boba Cups';
+                }
+    
+                h3 {
+                    font-size: 1rem;
+                    margin: 0;
+                    padding: 0;
+                    color: #8C89B8;
+                    font-family: 'Boba Cups';
+                }
+            }
+    
+            .comments {
+                width: 95%;
+                display: flex;
+                flex-direction: column;
+                border-left: 1px solid #8C89B880;
+                padding: 0 10px;
+                overflow-y: scroll;
+                max-height: 300px;
+    
+                &::-webkit-scrollbar {
+                    width: 0.4rem;
+                }
+    
+                &::-webkit-scrollbar-track {
+                    background: rgb(140, 137, 184);
+                    background: linear-gradient(340deg, rgba(140, 137, 184, 1) 0%, rgba(239, 195, 230, 1) 100%);
+                    border-radius: 0.6rem;
+                }
+    
+                &::-webkit-scrollbar-thumb {
+                    background: rgb(140, 137, 184);
+                    border-radius: 0.6rem;
+                }
+    
+                .comment {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0 0 10px;
+    
+                    .commentTitle {
+                        font-family: 'SerlingGalleria';
+                        color: #8C89B8;
+                        font-size: 15px;
+                        margin: 0;
+                        opacity: 0.7;
+                    }
+    
+                    .commentDescription {
+                        font-family: 'Coolvetica';
+                        color: #000;
+                        font-size: 15px;
+                        margin: 0;
+                        text-align: justify;
+                        opacity: 0.7;
+                    }
                 }
             }
         }
