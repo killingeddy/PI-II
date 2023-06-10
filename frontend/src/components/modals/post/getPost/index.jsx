@@ -85,9 +85,12 @@ export default function GetPostModal({ open, handleClose, id }) {
         const user = localStorage.getItem('user');
         const userId = JSON.parse(user).id;
         api
-            .delete(`/posts/like/${id}`, {
-                user_id: userId
-            })
+            .delete(`/posts/like/${id}`,
+                {
+                    data: {
+                        user_id: userId
+                    }
+                })
             .then((response) => {
                 setLiked(false);
             })
@@ -112,9 +115,16 @@ export default function GetPostModal({ open, handleClose, id }) {
     }
 
     React.useEffect(() => {
-        getPost();
-        getComments();
-        localVerify();
+        if (open) {
+            getPost();
+            getComments();
+            localVerify();
+        } else {
+            setComments([]);
+            setData({});
+            setLiked(false);
+            return;
+        }
     }, [open, id, openAddComment, liked]);
 
     return (
