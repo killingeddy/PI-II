@@ -4,7 +4,7 @@ const getAllPosts = () => {
     select p.*, u.name, u.email
     FROM public.post p
     inner join public.users u on p.user_id = u.id 
-    ORDER BY created_at DESC;
+    ORDER BY p.n_likes DESC;
     `;
 }
 
