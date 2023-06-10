@@ -67,21 +67,19 @@ const createLike = (like, id) => {
     return `
     INSERT INTO public.user_likes (user_id, post_id)
     VALUES (${like.user_id}, ${id});
-    `;
-}
-
-const updateLike = (id, like) => {
-    return `
     UPDATE public.post
-    SET likes = likes ${like}
+    SET n_likes = n_likes + 1
     WHERE id = ${id};
     `;
 }
 
-const deleteLike = (like) => {
+const deleteLike = (like, id) => {
     return `
     DELETE FROM public.user_likes
-    WHERE user_id = ${like.user_id} AND post_id = ${like.post_id};
+    WHERE user_id = ${like.user_id} AND post_id = ${id};
+    UPDATE public.post
+    SET n_likes = n_likes - 1
+    WHERE id = ${id};
     `;
 }
 
@@ -94,6 +92,5 @@ module.exports = {
     getPostComments,
     createComment,
     createLike,
-    deleteLike,
-    updateLike
+    deleteLike
 };

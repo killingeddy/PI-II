@@ -145,7 +145,27 @@ router.post("/like/:id", async (req, res) => {
         const like = req.body;
 
         client.query(utils.createLike(like, req.params.id))
-        .then(utils.updateLike(req.params.id, '+1'))
+        .then((result) => { res.json(result.rows) })
+        .catch((err) => { res.status(400).json(err), console.log(err) });
+
+        client.release();
+
+    } catch (err) {
+        res.json(err);
+        client.release();
+    }
+
+});
+
+router.delete("/like/:id", async (req, res) => {
+
+    const client = await pool.connect();
+
+    try {
+        
+        const like = req.body;
+
+        client.query(utils.deleteLike(like, req.params.id))
         .then((result) => { res.json(result.rows) })
         .catch((err) => { res.status(400).json(err), console.log(err) });
 
