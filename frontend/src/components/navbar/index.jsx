@@ -62,10 +62,8 @@ export default function Navbar() {
                     </Link>
                     {
                         !logged
-                            ?
+                        &&
                             <MenuItem icon={<Icons.LogInOutline color={'#8C89B8'} />} onClick={() => setLogin(true)}> <p className={styles.text}>Login</p></MenuItem>
-                            :
-                            <MenuItem icon={<Icons.PersonOutline color={'#8C89B8'} />} onClick={() => setLogin(true)}> <p className={styles.text}>Meu perfil</p></MenuItem>
                     }
                     <Link href="/blog">
                         <MenuItem active={router.pathname === "/blog"} icon={<Icons.LibraryOutline color={'#8C89B8'} />}> <p className={styles.text}>Blog</p></MenuItem>
