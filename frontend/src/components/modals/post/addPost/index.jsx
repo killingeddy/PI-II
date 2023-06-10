@@ -19,6 +19,8 @@ export default function AddPostModal({ open, handleClose }) {
         });
     }
 
+    const [logged, setLogged] = React.useState(false);
+
     const addPost = () => {
         const user = localStorage.getItem('user');
         const userId = JSON.parse(user).id;
@@ -54,6 +56,12 @@ export default function AddPostModal({ open, handleClose }) {
             });
     }
 
+    React.useEffect(() => {
+        if (localStorage.getItem('user')) {
+            setLogged(true);
+        }
+    }, []);
+
     return (
         <Modal
             open={open}
@@ -84,7 +92,12 @@ export default function AddPostModal({ open, handleClose }) {
                         onChange={handleChange}
                     />
                 </form>
-                <button className={styles.button} onClick={() => addPost()}>Adicionar</button>
+                {
+                    logged ?
+                        <button className={styles.button} onClick={() => addPost()}>Adicionar</button>
+                        :
+                        <button className={styles.button} onClick={() => toast.error('Você precisa estar logado para adicionar um post', { position: "top-left", autoClose: 5000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "dark", })}>Adicionar</button>
+                }
                 <ToastContainer />
             </div>
         </Modal>

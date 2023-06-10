@@ -13,6 +13,10 @@ export default function GetPostModal({ open, handleClose, id }) {
 
     const [openAddComment, setOpenAddComment] = React.useState(false);
 
+    const [liked, setLiked] = React.useState(false);
+
+    const [logged, setLogged] = React.useState(false);
+
     const getPost = async () => {
         api
             .get(`/posts/${id}`)
@@ -53,10 +57,65 @@ export default function GetPostModal({ open, handleClose, id }) {
             });
     };
 
+    const like = async () => {
+        const user = localStorage.getItem('user');
+        const userId = JSON.parse(user).id;
+        api
+            .post(`/posts/like/${id}`, {
+                user_id: userId
+            })
+            .then((response) => {
+                setLiked(true);
+            })
+            .catch((error) => {
+                toast.error('Erro ao curtir post', {
+                    position: "top-left",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            });
+    };
+
+    const dislike = async () => {
+        const user = localStorage.getItem('user');
+        const userId = JSON.parse(user).id;
+        api
+            .delete(`/posts/like/${id}`, {
+                user_id: userId
+            })
+            .then((response) => {
+                setLiked(false);
+            })
+            .catch((error) => {
+                toast.error('Erro ao descurtir post', {
+                    position: "top-left",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            });
+    };
+
+    const localVerify = async () => {
+        if (localStorage.getItem('user')) {
+            setLogged(true);
+        }
+    }
+
     React.useEffect(() => {
         getPost();
         getComments();
-    }, [open, id, openAddComment]);
+        localVerify();
+    }, [open, id, openAddComment, liked]);
 
     return (
         <Modal
@@ -75,14 +134,24 @@ export default function GetPostModal({ open, handleClose, id }) {
                 <h2 className={styles.subtitle}>Autor: {data?.name}</h2>
                 <p className={styles.description}>{data?.post_content}</p>
                 <div className={styles.buttons}>
-                    <button className={styles.button} onClick={() => setLiked(!liked)}>
-                        {/* {
-                            liked ? <Icons.Heart width="20px" height="20px" color="#8C89B8" /> : <Icons.HeartOutline width="20px" height="20px" color="#8C89B8" />
-                        } */}
-                    </button>
-                    <button onClick={() => setOpenAddComment(true)} className={styles.button}><Icons.ChatbubbleOutline width="20px" height="20px" color="#8C89B8" /></button>
-                    <button className={styles.button}><Icons.BookmarkOutline width="20px" height="20px" color="#8C89B8" /></button>
-                    <button className={styles.button}><Icons.ShareSocialOutline width="20px" height="20px" color="#8C89B8" /></button>
+                    {
+                        logged ?
+                            <>
+                                {
+                                    liked ?
+                                        <button className={styles.button} onClick={() => dislike()}><Icons.Heart width="20px" height="20px" color="#8C89B8" /> {data?.n_likes}</button>
+                                        :
+                                        <button className={styles.button} onClick={() => like()}><Icons.HeartOutline width="20px" height="20px" color="#8C89B8" /> {data?.n_likes}</button>
+                                }
+                                <button onClick={() => setOpenAddComment(true)} className={styles.button}><Icons.ChatbubbleOutline width="20px" height="20px" color="#8C89B8" /> {data?.n_comments}</button>
+                                <button className={styles.button}><Icons.BookmarkOutline width="20px" height="20px" color="#8C89B8" /></button>
+                                <button className={styles.button}><Icons.ShareSocialOutline width="20px" height="20px" color="#8C89B8" /></button>
+                            </>
+                            :
+                            <>
+                                <h3 className={styles.login}>Faça login para curtir e comentar</h3>
+                            </>
+                    }
                 </div>
                 <div className={styles.comments}>
                     {
