@@ -108,6 +108,30 @@ export default function GetPostModal({ open, handleClose, id }) {
             });
     };
 
+    const usersWhoLiked = async () => {
+        const user = localStorage.getItem('user');
+        const userId = JSON.parse(user).id;
+        api
+            .get(`/posts/usersWhoLiked/${id}`)
+            .then((response) => {
+                if (response.data.find((user) => user.user_id === userId)) {
+                    setLiked(true);
+                }
+            })
+            .catch((error) => {
+                toast.error('Erro ao acessar post', {
+                    position: "top-left",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            });
+    };
+
     const localVerify = async () => {
         if (localStorage.getItem('user')) {
             setLogged(true);
@@ -119,6 +143,7 @@ export default function GetPostModal({ open, handleClose, id }) {
             getPost();
             getComments();
             localVerify();
+            usersWhoLiked();
         } else {
             setComments([]);
             setData({});
