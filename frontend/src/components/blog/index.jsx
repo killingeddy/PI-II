@@ -38,7 +38,7 @@ export default function Blog() {
 
     React.useEffect(() => {
         getPosts();
-    }, []);
+    }, [getPostModal, addPostModal]);
 
     return (
         <>
@@ -56,7 +56,7 @@ export default function Blog() {
                             {
                                 data.map((item, index) => {
                                     return (
-                                        <div className={styles.post} onClick={() => {setId(item.id); setGetPostModal(true)}} key={index}>
+                                        <div className={styles.post} onClick={() => { setId(item.id); setGetPostModal(true) }} key={index}>
                                             <p className={styles.postTitle}>{item.title}</p>
                                             <p className={styles.postDescription}>{item.post_content}</p>
                                             <h5 className={styles.postAuthor}>Por: <span className={styles.author}>{item.name}</span></h5>
